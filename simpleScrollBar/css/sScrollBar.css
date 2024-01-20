@@ -4,38 +4,35 @@
 	top: 0;
 	right: 0;
 	background-color: #e3d4f7;
+	transition: opacity 0.2s;
 }
 .arrow {
-	content: "";
-    background-image: url("../img/angle-arrow.svg");
 	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: 10px;
 	display: flex;
 	position: absolute;
 	z-index: 9999;
 }
 .upArrow {
-    transform: scaleY(-1);
+    background-image: url("../img/angle-arrow-up.svg");
 	width: inherit;
 	top: -15px;
 }
 .downArrow {
-	display: flex;
+    background-image: url("../img/angle-arrow-up.svg");
+    transform: scaleY(-1);
 	width: inherit;
 	bottom: -15px;
 }
 .leftArrow {
-    transform: rotate(90deg);
+    background-image: url("../img/angle-arrow-left.svg");
 	width: 15px;
 	height: inherit;
-	top: 0;
 }
 .rightArrow {
-    transform: rotate(-90deg);
+    background-image: url("../img/angle-arrow-left.svg");
+    transform: scaleX(-1);
 	width: 15px;
 	height: inherit;
-	top: 0;
 }
 .upArrow:hover, .downArrow:hover, .leftArrow:hover, .rightArrow:hover {
 	background-color: green;
@@ -83,5 +80,6 @@
 .hScrollbarRail {
 	position: absolute;
 	left: 0;
-	background-color: #e3d4f7; 
+	background-color: #e3d4f7;
+	transition: opacity 0.2s;
 }

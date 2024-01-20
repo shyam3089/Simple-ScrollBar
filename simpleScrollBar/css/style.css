@@ -253,4 +253,8 @@ html {
 	display: flex;
 	flex-direction: column;
 	height: 400px;
+	background-color: #e4dddd;
+}
+.carouselWrapper{
+	padding: 15px;
 }
