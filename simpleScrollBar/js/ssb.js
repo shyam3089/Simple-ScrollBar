@@ -1,14 +1,15 @@
 jQuery.fn.sScrollBar = function (options) {
 	// Default options
     var settings = $.extend({
-		scrollWidth: 10,
-		borderRadius: 7,
+		scrollWidth: 5,
+		borderRadius: 3,
 		railBgColor: "#E1E5E6",
 		handleBgColor: "#AAA",
 		alpha: 0.8,
 		showArrows: true,
-		clickScrollRate: 250,
+		clickScrollRate: 200,
 		clickScrollSpeed: 200,
+		arrowScrollRate: 50
 	  }, options);
 
 	return this.each(function() {
@@ -152,16 +153,27 @@ jQuery.fn.sScrollBar = function (options) {
 						var contHeight = container.height();
 
 						var arrowHeight = 15; 
+						rightPosR = container.position().left + container.outerWidth();
+
 						if (settings.showArrows === true) {
 							$vRailElm.height(contHeight + parseInt(container.css('padding-top'), 10) - (arrowHeight * 2) + "px");
+
+							$vRailElm.css({
+								"left": rightPosR - settings.scrollWidth + "px",
+								"top": container.position().top + arrowHeight + "px"
+							})
+
 						} else {
 							$(".arrow").hide();
 
 							$vRailElm.height(contHeight + parseInt(container.css('padding-top'), 10) + "px");
 							
 							$vRailElm.css({
+								"left": rightPosR - settings.scrollWidth + "px",
+								"top": container.position().top + "px",
 								"border-radius":settings.borderRadius 
 							})
+
 						}
 
 						// set the height of the verticalScrollbar based on the height of the container
@@ -179,17 +191,13 @@ jQuery.fn.sScrollBar = function (options) {
 							}
 							verticalScrollbar.height(calcHeight + "%");
 	
-							rightPosR = container.position().left + container.outerWidth();
-							$vRailElm.css({
-								"left": rightPosR - settings.scrollWidth + "px",
-								"top": container.position().top + arrowHeight + "px"
-							})
+							
 						});
 						
 						resizeObserver.observe(container[0]);
 						
 						// handle the scroll event of the container
-						container.on('scroll', function () {
+						container.on("scroll", function () {
 							var scrollTopValue = container.scrollTop(); 
 
 							// var x = parseInt(container.css('padding-top'), 10) + parseInt(container.css('padding-bottom'), 10)
@@ -205,29 +213,42 @@ jQuery.fn.sScrollBar = function (options) {
 						});
 						
 						//scroll content on rail click (vertical scroll)	  
-						$vRailElm.mousedown(function (e) { //Relative ( to its parent) mouse position 
-							if (!$(e.target).closest($vRailElm).length) {
-								return;
-							}
-							var sPosition = verticalScrollbar.position()
-							var containerPos = container.offset().top
+						$vRailElm.on("mousedown", function (e) { //Relative ( to its parent) mouse position  
+							if (e.target === this) {
+								var sPosition = verticalScrollbar.position(),
+									currPos = sPosition.top + settings.scrollWidth * 2,
+									containerPos = container.offset().top;
 
-							clickPos = e.pageY - containerPos
+								clickPos = e.pageY - containerPos
 							
-							if (clickPos < sPosition.top) {
-								console.log("scroll pos: ",container.scrollTop() - settings.clickScrollRate)
-								container.animate({
-									scrollTop: container.scrollTop() - settings.clickScrollRate
-								},settings.clickScrollSpeed);
-							} else if (clickPos > sPosition.top) {
-								console.log("scroll pos: ",container.scrollTop() + settings.clickScrollRate)
-								container.animate({
-									scrollTop: container.scrollTop() + settings.clickScrollRate 
-								},settings.clickScrollSpeed);
+								if (currPos > clickPos) {
+									container.animate({
+										scrollTop: container.scrollTop() - settings.clickScrollRate
+									}, settings.clickScrollSpeed);
+								} else if (currPos < clickPos) {
+									container.animate({
+										scrollTop: container.scrollTop() + settings.clickScrollRate
+									}, settings.clickScrollSpeed);
+								}
 							}
 						});
 						verticalScrollbar.mousedown(function (e) { e.stopPropagation(); })
 	
+						// Arrow click event
+						$(".upArrow").on("mousedown", function (e) {
+							initialScrollTop = container.scrollTop();
+							container.animate({
+								scrollTop: initialScrollTop-settings.arrowScrollRate
+							}, settings.clickScrollSpeed);
+						});
+
+						$(".downArrow").on("mousedown", function (e) {
+							initialScrollTop = container.scrollTop();
+							container.animate({
+								scrollTop: initialScrollTop + settings.arrowScrollRate
+							}, settings.clickScrollSpeed);
+						});
+
 						// Scroll handle drag
 						var isDragging = false;
 						var initialY;
@@ -314,15 +335,28 @@ jQuery.fn.sScrollBar = function (options) {
 						contWidth = container.width();
 
 						var arrowWidth = 15; 
+						hRightPos = container.position().left;
+
 						if (settings.showArrows === true) {
-							$hRailElm.width(contWidth + parseInt(container.css('padding-left'), 10) + parseInt(container.css('padding-right'), 10) - (arrowWidth * 2) +"px")
+							$hRailElm.width(contWidth + parseInt(container.css('padding-left'), 10) + parseInt(container.css('padding-right'), 10) - (arrowWidth * 2) + arrowWidth + "px");
+
+							$hRailElm.css({
+								"left": hRightPos + "px",
+								"top": container.position().top + container.outerHeight() + "px"
+							});
 						} else {
 							$(".arrow").hide();
 							$hRailElm.width(contWidth + parseInt(container.css('padding-left'), 10) + parseInt(container.css('padding-right'), 10) + "px")
+							
+
+							$hRailElm.css({
+								"left": hRightPos + "px",
+								"top": container.position().top + container.outerHeight() + "px",
+								"border-radius": settings.borderRadius 
+							})
+							
 						}
 					
-						hRightPos = container.position().left;
-						$hRailElm.css({ "left": hRightPos + arrowWidth + "px", "top": container.position().top + container.outerHeight() + "px" })
 					
 						// insert the scrollbar after the container			
 						$hRailElm.append(hScrollbarHandle)
@@ -358,7 +392,6 @@ jQuery.fn.sScrollBar = function (options) {
 							}
 						);
 
-
 						// set the width of the scrollbar based on the width of the container
 						w = 100 * contWidth / maxWidth;
 						hScrollbarHandle.width(w + "%");
@@ -392,20 +425,42 @@ jQuery.fn.sScrollBar = function (options) {
 						});
 						
 						//scroll content on rail click (vertical scroll)	  
-						$hRailElm.mousedown(function (e) { //Relative ( to its parent) mouse position 
-							var sPosition = hScrollbarHandle.position()
+						$hRailElm.on("mousedown", function (e) { //Relative ( to its parent) mouse position 
+							if (e.target === this) {
+								var sPosition = hScrollbarHandle.position(),
+									currPos;
+															
+								//settings.scrollWidth added for compensationg arrow width
+								currPos = sPosition.left + settings.scrollWidth * 2;
 							
-							if (sPosition.left < e.pageX) {
-								container.animate({
-									scrollLeft: container.scrollLeft() + settings.clickScrollRate
-								},settings.clickScrollSpeed);
-							} else if (sPosition.left > e.pageX) {
-								container.animate({
-									scrollLeft: container.scrollLeft() - settings.clickScrollRate
-								},settings.clickScrollSpeed);
+								if (currPos < e.pageX) {
+									container.animate({
+										scrollLeft: container.scrollLeft() + settings.clickScrollRate
+									}, settings.clickScrollSpeed);
+								} else if (currPos > e.pageX) { //settings.scrollWidth added for compensationg arrow width
+									container.animate({
+										scrollLeft: container.scrollLeft() - settings.clickScrollRate
+									}, settings.clickScrollSpeed);
+								}
 							}
 						});
 						hScrollbarHandle.mousedown(function (e) { e.stopPropagation(); })
+
+						// Arrow click events
+						$(".leftArrow").on("mousedown", function (e) {
+							console.log("ccc")
+							initialScrollTop = container.scrollLeft();
+							container.animate({
+								scrollLeft: initialScrollTop-settings.arrowScrollRate
+							}, settings.clickScrollSpeed);
+						});
+
+						$(".rightArrow").on("mousedown", function (e) {
+							initialScrollTop = container.scrollLeft();
+							container.animate({
+								scrollLeft: initialScrollTop+settings.arrowScrollRate
+							}, settings.clickScrollSpeed);
+						});
 			
 						// Scroll handle drag
 						var isDragging = false;
