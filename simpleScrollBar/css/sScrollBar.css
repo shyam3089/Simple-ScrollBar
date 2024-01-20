@@ -1,0 +1,87 @@
+/* scroll bar */
+.vScrollbarRail {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: #e3d4f7;
+}
+.arrow {
+	content: "";
+    background-image: url("../img/angle-arrow.svg");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 10px;
+	display: flex;
+	position: absolute;
+	z-index: 9999;
+}
+.upArrow {
+    transform: scaleY(-1);
+	width: inherit;
+	top: -15px;
+}
+.downArrow {
+	display: flex;
+	width: inherit;
+	bottom: -15px;
+}
+.leftArrow {
+    transform: rotate(90deg);
+	width: 15px;
+	height: inherit;
+	top: 0;
+}
+.rightArrow {
+    transform: rotate(-90deg);
+	width: 15px;
+	height: inherit;
+	top: 0;
+}
+.upArrow:hover, .downArrow:hover, .leftArrow:hover, .rightArrow:hover {
+	background-color: green;
+}
+.vScrollbarHandle {
+	background: #c5a8eb;
+	position: absolute;
+} 
+.vScrollbarHandle:hover  {
+	background: #e3d4f7;
+} 
+.hScroll {	
+	overflow-x: auto;
+}
+.vScroll {	
+	overflow-y: auto;
+}
+.noNativeScrollBar {
+	overflow: -moz-scrollbars-none;
+	-ms-overflow-style: none !important;  /* Internet Explorer 10+ */
+    scrollbar-width: none !important;  /* Firefox */
+}
+.noNativeScrollBar::-webkit-scrollbar { 
+    display: none !important;  /* Safari and Chrome */
+}
+.noNativeScrollBar::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+.noNativeScrollBar::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+.toolbar-menu{ 
+	padding-top: 1rem !important;
+}
+/* horizontal scrollbar */
+.hScrollbarHandle {
+	background: #b87e5c;
+	position: absolute;
+} 
+.hScrollbarHandle:hover  {
+	background: #815b45;
+} 
+.hScrollbarRail {
+	position: absolute;
+	left: 0;
+	background-color: #e3d4f7; 
+}
