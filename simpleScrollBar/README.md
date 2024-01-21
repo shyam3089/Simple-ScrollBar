@@ -1,11 +1,13 @@
-<h1>Simple Scrollbar jQuery Plugin</h1>h1>
-Overview
+<h1>Simple Scrollbar</h1>
 
-The Simple Scrollbar jQuery Plugin is a lightweight and customizable solution for adding vertical and horizontal scrollbars to overflowing containers. It provides a clean and easy-to-use interface for enhancing the scrolling experience of your web applications.
-Features
+<h4>Overview</h4>
 
-    Vertical and Horizontal Scrollbars
-    Customizable appearance
+<p>The Simple Scrollbar jQuery Plugin is a lightweight and customizable solution for adding vertical and horizontal scrollbars to overflowing containers. It provides a clean and easy-to-use interface for enhancing the scrolling experience of your web applications.
+
+<strong>Features.</strong>
+
+    1. Vertical and Horizontal Scrollbars
+    2. Customizable appearance
     Smooth scrolling animation
     Arrow buttons for navigation
     Supports click-scrolling and drag-scrolling
