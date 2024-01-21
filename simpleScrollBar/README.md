@@ -8,20 +8,21 @@
 
     1. Vertical and Horizontal Scrollbars
     2. Customizable appearance
-    Smooth scrolling animation
-    Arrow buttons for navigation
-    Supports click-scrolling and drag-scrolling
-    Hover effects for a polished user interface
-    Automatically adjusts to container size changes
+    3. Smooth scrolling animation
+    4. Arrow buttons for navigation
+    5. Supports click-scrolling and drag-scrolling
+    6. Hover effects for a polished user interface
+    7. Automatically adjusts to container size changes
 
-Installation
+<h4>Installation</h4>
 
-Include the jQuery library and the Simple Scrollbar plugin in your HTML file:
+Include the jQuery library, the Simple Scrollbar plugin and css in your HTML file:
 
 html
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="path/to/jquery.simple-scrollbar.js"></script>
+<script src="simple-scrollbar.js"></script>
+<link rel="stylesheet" href="simple-scrollbar.css">
 
 Usage
 
