@@ -496,13 +496,22 @@ $.fn.sScrollBar = function (options) {
 					
 						// handle the scroll event of the container
 						container.on("scroll", function () {
-							// var x = parseInt(container.css("padding-top"), 10)+parseInt(container.css("padding-bottom"), 10)
-							var scrollPercentH = 100 * (container.scrollLeft()) / (maxWidth);
+							var sLeft = container.scrollLeft() ,
+								totalContentWidth = maxWidth-paddingLeft;
+						
+							var scrollPercentH = (sLeft/totalContentWidth)*100;
 							$hScrollbarHandle.css("left", Math.max(0, scrollPercentH) + "%");
-
+							
 							// *** Never use outerWidth here ***
-							hSrollBarWidth = 100 * container.width() / maxWidth;
-							$hScrollbarHandle.width(hSrollBarWidth+"%");
+							var maxWidthx = maxWidth-paddingLeft;
+							var hHandleWidth = (container.width() / maxWidthx) * 100;
+							
+							if (hHandleWidth > 100) {
+								hHandleWidth = 100
+							}
+
+							$hScrollbarHandle.width(hHandleWidth + "%");
+							
 						});
 						
 						//scroll content on rail click (vertical scroll)	  
@@ -530,7 +539,7 @@ $.fn.sScrollBar = function (options) {
 						// Arrow click events
 						var leftArrow = container.find(".hScrollbarRail").find(".leftArrow");
 						leftArrow.on("mousedown", function (e) {
-							initialScrollTop = container.scrollLeft();
+							var initialScrollTop = container.scrollLeft();
 							container.animate({
 								scrollLeft: initialScrollTop-settings.arrowScrollRate
 							}, settings.clickScrollSpeed);
@@ -538,7 +547,7 @@ $.fn.sScrollBar = function (options) {
 
 						var rightArrow = container.find(".hScrollbarRail").find(".rightArrow");
 						rightArrow.on("mousedown", function (e) {
-							initialScrollTop = container.scrollLeft();
+							var initialScrollTop = container.scrollLeft();
 							container.animate({
 								scrollLeft: initialScrollTop+settings.arrowScrollRate
 							}, settings.clickScrollSpeed);
@@ -564,9 +573,9 @@ $.fn.sScrollBar = function (options) {
 						function drag(e) {
 							if (isDragging) {
 								var deltaX = e.clientX-initialX;
-								var containerWidth = container.outerWidth(); 
+								var containerWidth = container.width(); 
 								var handleWidth = $hScrollbarHandle.width(); 
-								var maxScrollLeft = maxWidthElm.outerWidth()-containerWidth;
+								var maxScrollLeft = maxWidthElm.width()-containerWidth;
 
 								// Calculate the new scrollLeft value based on the handle's drag
 								var newScrollLeft = initialScrollLeft+deltaX * (maxScrollLeft / (containerWidth-handleWidth));
