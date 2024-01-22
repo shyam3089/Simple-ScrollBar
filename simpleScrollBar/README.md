@@ -37,7 +37,7 @@ To initialize Simple Scrollbar on a container element, call the sScrollBar metho
     });
 ```
 
-</strong>Configuration</strong>
+<h3>Configuration</h3>
 
 Customize the scrollbar appearance and behavior by passing options during initialization:
 
