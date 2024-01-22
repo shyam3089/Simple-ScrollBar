@@ -19,7 +19,6 @@
 <h3>Installation</h3>
 
 Include the jQuery library, the Simple Scrollbar plugin and css in your HTML file.<br>
-<strong>Remember:</strong> Add the icons for arrows in `img` direcotry. If you are adding into your own images directory change the icons path in `sScrollbar.css`.
 
 ```html
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
