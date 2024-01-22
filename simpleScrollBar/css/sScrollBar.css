@@ -35,7 +35,7 @@
 	height: inherit;
 }
 .upArrow:hover, .downArrow:hover, .leftArrow:hover, .rightArrow:hover {
-	background-color: green;
+	opacity: 1;
 }
 .vScrollbarHandle {
 	background: #c5a8eb;
