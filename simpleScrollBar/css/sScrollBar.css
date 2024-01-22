@@ -13,24 +13,16 @@
 	z-index: 9999;
 }
 .upArrow {
-    background-image: url("../img/angle-arrow-up.svg");
 	width: inherit;
-	top: -15px;
 }
 .downArrow {
-    background-image: url("../img/angle-arrow-up.svg");
-    transform: scaleY(-1);
 	width: inherit;
-	bottom: -15px;
 }
 .leftArrow {
-    background-image: url("../img/angle-arrow-left.svg");
 	width: 15px;
 	height: inherit;
 }
 .rightArrow {
-    background-image: url("../img/angle-arrow-left.svg");
-    transform: scaleX(-1);
 	width: 15px;
 	height: inherit;
 }

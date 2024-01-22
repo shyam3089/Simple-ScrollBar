@@ -12,10 +12,13 @@ $.fn.sScrollBar = function (options) {
 		clickScrollRate: 200,
 		clickScrollSpeed: 200,
 		arrowScrollRate: 50,
-		hOffset: 0,
-		vOffset: 0,
+		hOffset: -2,
+		vOffset: -2,
 		rtl: true
 	}, options);
+
+	// Common vars	
+	var railMarginTop = 10;
 
 	return this.each(function() {
 		// select the container element
@@ -110,8 +113,12 @@ $.fn.sScrollBar = function (options) {
 
 						var totalChildrenHeight = childrenHeight;
 						
+						var upArrowSvg = '<svg class="arrow upArrow" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 800 492" style="enable-background:new 0 0 800 492;" xml:space="preserve"><g><path d="M781,472.9c-25.4,25.4-66.6,25.4-92,0L400,184.1L111.1,472.9c-25.4,25.4-66.6,25.4-92.1,0c-25.4-25.4-25.4-66.6,0-92.1 L400,0l380.9,380.9C806.4,406.3,806.4,447.5,781,472.9z"/></g></svg>';
+
+						var downArrowSvg = '<svg class="arrow downArrow"  version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 800 492" style="enable-background:new 0 0 800 492;" xml:space="preserve"><g><path d="M780.9,111L400,491.9L19,111.2C-6.4,85.7-6.4,44.4,19,19c25.5-25.4,66.7-25.4,92.1,0L400,307.8L689,19 c25.4-25.4,66.6-25.4,92,0S806.4,85.7,780.9,111z"/></g></svg>';
+
 						// create the verticalScrollbar element
-						var vRail = $('<div class="ssb vScrollbarRail"><div class="arrow upArrow"></div><div class="arrow downArrow"></div></div>'),
+						var vRail = $('<div class="ssb vScrollbarRail">'+upArrowSvg+downArrowSvg+'</div>'),
 							vHandle = $('<div class="vScrollbarHandle"></div>');
 						
 						// Append the scrollbar inside container
@@ -141,22 +148,26 @@ $.fn.sScrollBar = function (options) {
 							"opacity": settings.handleOpacity
 						});				
 
-						// Set background color for arrows
+						// Set background color for arrows						
+						$svg = container.find(".arrow");
+						$svg.find('path').attr('fill', settings.railBgColor);
+
 						$vRailElm.find(".arrow").css({
-							"background-color": settings.railBgColor,
 							"opacity": settings.railOpacity,
-							"height": "15px"
+							"height": settings.scrollWidth
 						});
 
 						// Set arrow border-radius
 						// NOTE: top arrow is flipped vertically
 						$vRailElm.find(".upArrow").css({
+							"top": -settings.scrollWidth,
 							"border-top-right-radius": settings.borderRadius,
 							"border-top-left-radius": settings.borderRadius,
 							"background-position": "center center" 
 						});
  
 						$vRailElm.find(".downArrow").css({
+							"bottom": -settings.scrollWidth,
 							"border-top-right-radius": settings.borderRadius,
 							"border-top-left-radius": settings.borderRadius,
 							"background-position": "center center" // flipped div
@@ -174,24 +185,39 @@ $.fn.sScrollBar = function (options) {
 
 						var contHeight = container.outerHeight();
 
-						var arrowHeight = 15,
-							rightPosR = container.position().left + container.outerWidth();
+						var arrowHeight = settings.scrollWidth,
+							rightPosR = container.position().left + container.outerWidth(),
+							borderInt = 0;
 
+						if (settings.rtl) {
+							var borderWidth = container.css('border-right-width');
+							borderInt = parseFloat(borderWidth.replace(/\D/g, ''));
+						} else {
+							borderWidth = container.css('border-left-width');		
+							borderInt = parseFloat(borderWidth.replace(/\D/g, ''));
+						}
+
+						var topBorderWidth = container.css('border-top-width'),
+							topborderInt = parseFloat(topBorderWidth.replace(/\D/g, '')),
+							bottomBorderWidth = container.css('border-bottom-width'),
+							bottomborderInt = parseFloat(bottomBorderWidth.replace(/\D/g, ''))
+						
 						// Handle arrows and adjust scroll bar dimensions
 						if (settings.showArrows) {
-							$vRailElm.height(contHeight-(arrowHeight * 2)+"px");
-
+							$vRailElm.height(contHeight-topborderInt-bottomborderInt-railMarginTop-(arrowHeight * 2));
+						
 							$vRailElm.css({
-								"left": rightPosR - settings.scrollWidth + settings.hOffset + "px",
-								"top": container.position().top + arrowHeight + "px"
+								"left": rightPosR - settings.scrollWidth + settings.hOffset-borderInt,
+								"top": container.position().top + arrowHeight + topborderInt+(railMarginTop/2) ,
+								"border-radius":settings.borderRadius 
 							});
 						} else {
 							$vRailElm.find(".arrow").hide();							
-							$vRailElm.height(contHeight+"px");
+							$vRailElm.height(contHeight-topborderInt-bottomborderInt-railMarginTop);
 							
 							$vRailElm.css({
-								"left": rightPosR-settings.scrollWidth+settings.hOffset+"px",
-								"top": container.position().top+"px",
+								"left": rightPosR-settings.scrollWidth+settings.hOffset-borderInt,
+								"top": container.position().top+topborderInt+(railMarginTop/2),
 								"border-radius":settings.borderRadius 
 							})
 
@@ -209,20 +235,21 @@ $.fn.sScrollBar = function (options) {
 
 							// Handle arrows and adjust scroll bar dimensions
 							if (settings.showArrows) {
-								$vRailElm.height(contHeight-(arrowHeight * 2)+"px");
+								$vRailElm.height(contHeight-(arrowHeight * 2));
 	
 								$vRailElm.css({
-									"left": rightPosR-settings.scrollWidth+settings.hOffset+"px",
-									"top": container.position().top+arrowHeight+"px"
+									"left": rightPosR-settings.scrollWidth+settings.hOffset,
+									"top": container.position().top + arrowHeight + "px",
+									"border-radius":settings.borderRadius 
 								})
 	
 							} else {
 								$vRailElm.find(".arrow").hide();	
-								$vRailElm.height(contHeight+"px");
+								$vRailElm.height(contHeight);
 								
 								$vRailElm.css({
-									"left": rightPosR-settings.scrollWidth+settings.hOffset+"px",
-									"top": container.position().top+"px",
+									"left": rightPosR-settings.scrollWidth+settings.hOffset,
+									"top": container.position().top,
 									"border-radius":settings.borderRadius 
 								})
 							}
@@ -389,10 +416,11 @@ $.fn.sScrollBar = function (options) {
 						}
 						
 						// create the scrollbar element
-						var hRail = $('<div class="ssb hScrollbarRail"><div class="arrow leftArrow"></div><div class="arrow rightArrow"></div></div>');
+						var hRail = $('<div class="ssb hScrollbarRail"><svg class="arrow leftArrow" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 492 800" style="enable-background:new 0 0 492 800;" xml:space="preserve"><g><path fill="red" d="M472.9,19c25.4,25.4,25.4,66.6,0,92L184.1,400l288.8,288.9c25.4,25.4,25.4,66.6,0,92.1c-25.4,25.4-66.6,25.4-92.1,0L0,400 L380.9,19.1C406.3-6.3,447.5-6.3,472.9,19z"/></g></svg><svg class="arrow rightArrow" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 491.9 800.1" style="enable-background:new 0 0 491.9 800.1;" xml:space="preserve"><g><path d="M111,19.1L491.9,400L111.2,781c-25.5,25.4-66.7,25.4-92.1,0c-25.4-25.5-25.4-66.7,0-92.1L307.8,400L19,111 C-6.3,85.6-6.3,44.4,19,19S85.7-6.4,111,19.1z"/></g></svg></div>');
 						var hHandle = $('<div class="hScrollbarHandle"></div>');
 					
 						hRail.appendTo(container);
+
 
 						var $hRailElm = container.find(".hScrollbarRail");
 						$hRailElm.height();
@@ -411,7 +439,7 @@ $.fn.sScrollBar = function (options) {
 
 						var contWidth = container.outerWidth(),
 							hRightPos = container.position().left,
-							arrowWidth = 15,
+							arrowWidth = settings.scrollWidth,
 							maxWidth = 0,
 							maxWidthElm;
 													
@@ -437,48 +465,65 @@ $.fn.sScrollBar = function (options) {
 							"opacity": settings.handleOpacity
 						});
 					
+						var	topBorderWidth = container.css('border-top-width'),
+							topBorderint = parseFloat(topBorderWidth.replace(/\D/g, '')),
+							
+							leftBorderWidth = container.css('border-left-width'),
+							leftborderInt = parseFloat(leftBorderWidth.replace(/\D/g, '')),
 						
+							rightBorderWidth = container.css('border-right-width'),
+							rightBorderint = parseFloat(rightBorderWidth.replace(/\D/g, '')),
+							
+						
+							bottomBorderWidth = container.css('border-bottom-width'),
+							bottomborderInt = parseFloat(bottomBorderWidth.replace(/\D/g, ''))
+						
+							
 						// Handle arrows and adjust scroll bar dimensions
 						if (settings.showArrows) { 
-							$hRailElm.width(contWidth-(arrowWidth*2)+"px");
+							$hRailElm.width(contWidth-(arrowWidth*2)-leftborderInt-rightBorderint-railMarginTop);
 
 							$hRailElm.css({
-								"left": hRightPos+arrowWidth+"px",
-								"top": container.position().top-settings.scrollWidth+settings.vOffset+container.outerHeight()+"px"
+								"left": hRightPos+arrowWidth+leftborderInt+(railMarginTop/2),
+								"top": container.position().top - settings.scrollWidth + settings.vOffset + container.outerHeight() - bottomborderInt + "px",
+								"border-radius":settings.borderRadius 
 							});
 						} else {
 							$hRailElm.find(".arrow").hide();
-							console.log(contWidth,paddingLeft,paddingRight)
-							$hRailElm.width(contWidth+"px")
+
+							$hRailElm.width(contWidth-leftborderInt-rightBorderint-railMarginTop)
 							
 							$hRailElm.css({
-								"left": hRightPos+"px",
-								"top": container.position().top-settings.scrollWidth+settings.vOffset+container.outerHeight()+"px",
+								"left": hRightPos+leftborderInt+(railMarginTop/2),
+								"top": container.position().top-settings.scrollWidth+settings.vOffset+container.outerHeight()-bottomborderInt,
 								"border-radius": settings.borderRadius 
 							})
 							
 						}
 						
-						// Set background color for arrows
+						// Set background color for arrows						
+						$svg = container.find(".arrow");
+						$svg.find('path').attr('fill', settings.railBgColor);
+
 						$hRailElm.find(".arrow").css({
-							"background-color": settings.railBgColor,
+							// "background-color": settings.railBgColor,
 							"opacity": settings.railOpacity,
-							"width": "15px",
+							"width": settings.scrollWidth,
 						});
 
 						// Set left and right position of the arrows and border-radius
 						// NOTE: left arrow is rotated 90deg
 						$hRailElm.find(".leftArrow").css({
-							"left": -15,
+							"left": -settings.scrollWidth,
 							"border-top-left-radius": settings.borderRadius,
 							"border-bottom-left-radius": settings.borderRadius,
 							"background-position": "center center" 
 						});
 
 						$hRailElm.find(".rightArrow").css({
-							"right": -15,
-							"border-top-left-radius": settings.borderRadius,
-							"border-bottom-left-radius": settings.borderRadius,
+							"right": -settings.scrollWidth,
+							"border-top-right-radius": settings.borderRadius,
+							"border-bottom-right-radius": settings.borderRadius,
 							"background-position": "center center" // flipped div
 						});
 						
@@ -622,21 +667,22 @@ $.fn.sScrollBar = function (options) {
 							
 							// Handle arrows and adjust scroll bar dimensions
 							if (settings.showArrows) {								
-								$hRailElm.width(contWidth-(arrowWidth * 2)+"px");
+								$hRailElm.width(contWidth-(arrowWidth * 2));
 	
 								$hRailElm.css({
-									"left": hRightPos+arrowWidth+"px",
-									"top": container.position().top-settings.scrollWidth+settings.vOffset+container.outerHeight()+"px"
+									"left": hRightPos+arrowWidth,
+									"top": container.position().top - settings.scrollWidth + settings.vOffset + container.outerHeight() + "px",
+									"border-radius": settings.borderRadius 
 								});
 							} else {
 								$hRailElm.find(".arrow").hide();
-								$hRailElm.width(contWidth+"px")
+								$hRailElm.width(contWidth)
 								
 								console.log(settings.vOffset,container.position().top+container.outerHeight())
 								$hRailElm.css({
-									"left": hRightPos+"px",
-									"top": container.position().top-settings.scrollWidth+settings.vOffset+container.outerHeight()+"px",
-									"border-radius": settings.borderRadius 
+									"left": hRightPos,
+									"top": container.position().top-settings.scrollWidth+settings.vOffset+container.outerHeight(),
+									"border-radius": settings.borderRadius,
 								})
 								
 							};
