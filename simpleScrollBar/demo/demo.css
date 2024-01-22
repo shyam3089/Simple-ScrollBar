@@ -1,15 +1,43 @@
-
+@font-face {
+	font-family: 'OpenSans-thin';
+	src: url('fonts/OpenSans-Light.ttf') format('truetype'); 
+	font-style: normal;
+}
+@font-face {
+	font-family: 'OpenSans-regular';
+	src: url('fonts/OpenSans-Regular.ttf') format('truetype'); 
+	font-style: normal;
+}
+@font-face {
+	font-family: 'OpenSans-medium';
+	src: url('fonts/OpenSans-Medium.ttf') format('truetype'); 
+	font-style: normal;
+}
+@font-face {
+	font-family: 'OpenSans-light';
+	src: url('fonts/OpenSans-semiBold.ttf') format('truetype'); 
+	font-style: normal;
+}
+@font-face {
+	font-family: 'OpenSans-bold';
+	src: url('fonts/OpenSans-Bold.ttf') format('truetype'); 
+	font-style: normal;
+}
 /* ------------------ */
 html {
 	width: 100%;
 	height: auto;
 }
 body {
-	font-family: Arial, sans-serif;
 	margin: 0;
 	padding: 0;
 	background-color: #ececec;
 	font-size: 14px;
+	line-height: 20px;
+	font-family: 'OpenSans-regular';
+}
+h1,h2, h3, h4 {
+	font-family: 'OpenSans-medium';
 }
 * {
 	box-sizing: border-box; 
@@ -54,6 +82,7 @@ body {
 	background-color: #fff;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	padding: 10px;
+	border-radius: 5px;
 }
 .horizontal-container {
 	width:  100%;
@@ -63,19 +92,20 @@ body {
 	background-color: #fff;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	padding: 10px;
+	border-radius: 5px;
 }
 .horizontal-container p{
 	width: 150%;
 }
 .noVertical {
 	width:  100%;
-	height: 150px;
+	height: 300px;
 	border: 1px solid #ccc;
 	overflow-x: auto; 
 	background-color: #fff;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	padding: 10px;
-	height: 300px !important;
+	border-radius: 5px;
 }
 .noVertical p{
 	width: 150%;
