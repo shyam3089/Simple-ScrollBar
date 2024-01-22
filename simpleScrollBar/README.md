@@ -143,13 +143,13 @@ Customize the scrollbar appearance and behavior by passing options during initia
             <td>hOffset</td>
             <td>Number</td>
             <td>Horizontal scrollbar offset from container: `pixels`.</td>
-            <td>15</td>
+            <td>0</td>
         </tr>
         <tr>
             <td>vOffset</td>
             <td>Number</td>
             <td>Vertical scrollbar offset from container: `pixels`.</td>
-            <td>15</td>
+            <td>0</td>
         </tr>
     </tbody>
 </table>
