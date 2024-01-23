@@ -263,14 +263,14 @@ $.fn.sScrollBar = function (options) {
 						});
 						
 						//scroll content on track click (vertical scroll)	  
-						$vTrackElm.on("mousedown", function (e) { //Relative ( to its parent) mouse position  
+						$vRailElm.on("mousedown", function (e) { //Relative ( to its parent) mouse position  
 							if (e.target === this) {
 								var sPosition = $vScrollbarHandle.position(),
 									handlePos = sPosition.top+settings.scrollWidth * 2,
 									containerPos = container.offset().top;
 
 								clickPos = e.pageY-containerPos
-								console.log(handlePos,clickPos)
+								console.log(handlePos, clickPos);
 								if (handlePos > clickPos) {
 									container.animate({
 										scrollTop: container.scrollTop()-settings.clickScrollRate
@@ -306,7 +306,7 @@ $.fn.sScrollBar = function (options) {
 						var initialY;
 						var initialScrollTop;
 
-						$vScrollbarHandle.mousedown(function (e) {
+						$vScrollbarHandle.on("mousedown", function (e) {
 							e.preventDefault();
 							isDragging = true;
 							initialY = e.clientY;
@@ -536,7 +536,7 @@ $.fn.sScrollBar = function (options) {
 						});
 						
 						//scroll content on track click (horizontal scroll)	  
-						$hTrackElm.on("mousedown", function (e) { //Relative (to its parent) mouse position 
+						$hRailElm.on("mousedown", function (e) { //Relative (to its parent) mouse position 
 							if (e.target === this) {
 								var sPosition = $hScrollbarHandle.position(),
 									handlePos;
@@ -580,7 +580,7 @@ $.fn.sScrollBar = function (options) {
 						var initialX;
 						var initialScrollLeft;
 
-						$hScrollbarHandle.mousedown(function (e) {
+						$hScrollbarHandle.on("mousedown", function (e) {
 							e.preventDefault();
 							isDragging = true;
 							initialX = e.clientX;
