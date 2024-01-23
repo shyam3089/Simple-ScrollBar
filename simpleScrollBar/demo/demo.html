@@ -80,14 +80,14 @@
 </div>
 <script>
 // Apply the Simple Scrollbar Plugin
-$(document).ready(function () {
+$(window).on("load",function () {
 	// Vertical scrollbar
 	$(".container").sScrollBar( {
 		scrollWidth: 6,
 		borderRadius: 3,
-		railBgColor: "#c2cbd1",
+		trackBgColor: "#c0c9ce",
 		handleBgColor: "#9aa1a5",
-		railOpacity: 0.5,
+		trackOpacity: 0.5,
 		handleOpacity: 0.7,
 		showArrows: false,
 		clickScrollSpeed: 200,
@@ -97,9 +97,9 @@ $(document).ready(function () {
 	$(".withArrow").sScrollBar( {
 		scrollWidth: 10,
 		borderRadius: 5,
-		railBgColor: "#649dbc",
+		trackBgColor: "#649dbc",
 		handleBgColor: "#27a9f7",
-		railOpacity: 0.5,
+		trackOpacity: 0.5,
 		handleOpacity: 0.7,
 		showArrows: true,
 		clickScrollSpeed: 200,
@@ -110,9 +110,9 @@ $(document).ready(function () {
 	$(".noVertical").sScrollBar( {
 		scrollWidth: 6,
 		borderRadius: 3,
-		railBgColor: "#947eb5",
+		trackBgColor: "#947eb5",
 		handleBgColor: "#ab77f9",
-		railOpacity: 0.5,
+		trackOpacity: 0.5,
 		handleOpacity: 0.7,
 		showArrows: false,
 		clickScrollSpeed: 200,
@@ -122,9 +122,9 @@ $(document).ready(function () {
 	$(".horizontal-container").sScrollBar( {
 		scrollWidth: 10,
 		borderRadius: 5,
-		railBgColor: "#947eb5",
+		trackBgColor: "#947eb5",
 		handleBgColor: "#ab77f9",
-		railOpacity: 0.5,
+		trackOpacity: 0.5,
 		handleOpacity: 0.7,
 		showArrows: true,
 		clickScrollSpeed: 200,
