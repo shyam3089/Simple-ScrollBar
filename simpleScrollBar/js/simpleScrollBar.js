@@ -12,8 +12,8 @@ $.fn.sScrollBar = function (options) {
 		clickScrollRate: 200,
 		clickScrollSpeed: 200,
 		arrowScrollRate: 50,
-		hOffset: -2,
-		vOffset: -2,
+		hOffset: 0,
+		vOffset: 0,
 		rtl: true
 	}, options);
 
@@ -95,12 +95,11 @@ $.fn.sScrollBar = function (options) {
 						paddingBottom = parseInt(container.css("padding-bottom"), 10),
 						paddingLeft = parseInt(container.css("padding-left"), 10);
 						
-						
 						// Add padding for scrollbar to occuppy
 						// 2px extra added for safety 
-						if (settings.rtl && paddingRight === 0) {
+						if (settings.rtl && paddingRight < settings.scrollWidth + 2) {
 							container.css("padding-right", settings.scrollWidth + 2)
-						} else if (!settings.rtl && paddingLeft === 0) {
+						} else if (!settings.rtl && paddingLeft < settings.scrollWidth + 2) {
 							container.css("padding-left", settings.scrollWidth + 2)
 						}
 
@@ -195,28 +194,29 @@ $.fn.sScrollBar = function (options) {
 							topborderInt = parseFloat(topBorderWidth),
 							bottomBorderWidth = container.css('border-bottom-width'),
 							bottomborderInt = parseFloat(bottomBorderWidth);
-						
+						//-----------------------------------------------------
 						// Handle arrows and adjust scroll bar dimensions
+						//-----------------------------------------------------
 						if (settings.showArrows) {
-							$vTrackElm.height(contHeight-topborderInt-bottomborderInt-trackMarginTop-(arrowHeight * 2));
+							$vTrackElm.height(contHeight-topborderInt-bottomborderInt-paddingTop-paddingBottom-(arrowHeight * 2));
 						
 							$vTrackElm.css({
 								"left": rightPosR - settings.scrollWidth + settings.hOffset-borderInt,
-								"top": container.position().top + arrowHeight + topborderInt+(trackMarginTop/2) ,
+								"top": container.position().top + arrowHeight + topborderInt+(paddingTop) ,
 								"border-radius":settings.borderRadius 
 							});
 						} else {
 							$vTrackElm.find(".arrow").hide();							
-							$vTrackElm.height(contHeight-topborderInt-bottomborderInt-trackMarginTop);
+							$vTrackElm.height(contHeight-topborderInt-bottomborderInt-paddingTop-paddingBottom);
 							
 							$vTrackElm.css({
 								"left": rightPosR-settings.scrollWidth+settings.hOffset-borderInt,
-								"top": container.position().top+topborderInt+(trackMarginTop/2),
+								"top": container.position().top+topborderInt+paddingTop,
 								"border-radius":settings.borderRadius 
 							})
 
 						}
-
+						//-----------------------------------------------------
 						// set the height of the verticalScrollbar based on the height of the container
 						scrollBarHeight = 100 * contHeight / totalChildrenHeight;						
 						// scrollBarHeight = (scrollBarHeight > 100) ? 100 : scrollBarHeight;
@@ -394,7 +394,7 @@ $.fn.sScrollBar = function (options) {
 							
 						// Add padding for scrollbar to occuppy
 						// 2px extra added for safety 
-						if (paddingBottom === 0) {
+						if (paddingBottom === settings.scrollWidth + 2) {
 							container.css("padding-bottom", settings.scrollWidth+2)
 						}
 						
@@ -462,29 +462,30 @@ $.fn.sScrollBar = function (options) {
 							bottomBorderWidth = container.css('border-bottom-width'),
 							bottomborderInt = parseFloat(bottomBorderWidth)
 						
-							
+						//-----------------------------------------------------
 						// Handle arrows and adjust scroll bar dimensions
+						//-----------------------------------------------------
 						if (settings.showArrows) { 
-							$hTrackElm.width(contWidth-(arrowWidth*2)-leftborderInt-rightBorderint-trackMarginTop);
+							$hTrackElm.width(contWidth-(arrowWidth*2)-leftborderInt-rightBorderint-paddingLeft-paddingRight);
 
 							$hTrackElm.css({
-								"left": hRightPos+arrowWidth+leftborderInt+(trackMarginTop/2),
+								"left": hRightPos+arrowWidth+leftborderInt+paddingLeft,
 								"top": container.position().top - settings.scrollWidth + settings.vOffset + container.outerHeight() - bottomborderInt + "px",
 								"border-radius":settings.borderRadius 
 							});
 						} else {
 							$hTrackElm.find(".arrow").hide();
 
-							$hTrackElm.width(contWidth-leftborderInt-rightBorderint-trackMarginTop)
+							$hTrackElm.width(contWidth-leftborderInt-rightBorderint-paddingLeft-paddingRight)
 							
 							$hTrackElm.css({
-								"left": hRightPos+leftborderInt+(trackMarginTop/2),
+								"left": hRightPos+leftborderInt+paddingLeft,
 								"top": container.position().top-settings.scrollWidth+settings.vOffset+container.outerHeight()-bottomborderInt,
 								"border-radius": settings.borderRadius 
 							})
 							
 						}
-						
+						//-----------------------------------------------------
 						// Set background color for arrows						
 						$svg = container.find(".arrow");
 						$svg.find('path').attr('fill', settings.trackBgColor);
