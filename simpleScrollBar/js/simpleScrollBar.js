@@ -597,8 +597,8 @@ $.fn.sScrollBar = function (options) {
 								var deltaX = e.clientX-initialX;
 								var containerWidth = container.width(); 
 								var handleWidth = $hScrollbarHandle.width(); 
-								var maxScrollLeft = maxWidthElm.width()-containerWidth;
-
+								var maxScrollLeft = maxWidth-containerWidth;
+								console.log(container.scrollLeft(),containerWidth)
 								// Calculate the new scrollLeft value based on the handle's drag
 								var newScrollLeft = initialScrollLeft+deltaX * (maxScrollLeft / (containerWidth-handleWidth));
 

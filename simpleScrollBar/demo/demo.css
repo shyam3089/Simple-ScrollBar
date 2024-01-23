@@ -31,7 +31,8 @@ html {
 body {
 	margin: 0;
 	padding: 0;
-	background-color: #ececec;
+	background-color: #1b1b1b;
+	color: #505880;
 	font-size: 14px;
 	line-height: 20px;
 	font-family: 'OpenSans-regular';
@@ -51,7 +52,7 @@ h1,h2, h3, h4 {
 	align-items: center;
 	padding: 0 0 50px;
 	margin: 0 2%;
-	background-color: #fff;
+	background-color: #1b1b1b;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .title {
@@ -78,18 +79,20 @@ h1,h2, h3, h4 {
 	width: 100%;
 	height: 300px;
 	border: 1px solid #ccc;
-	overflow: auto;
-	background-color: #fff;
+	background-color: #1b1b1b;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	padding: 15px;
+	/* padding: 15px; */
 	border-radius: 5px;
+}
+.cnt p:first-child {
+	padding-top: 0;
+	margin-top: 0;
 }
 .horizontal-container {
 	width:  100%;
 	height: 300px;
 	border: 1px solid #ccc;
-	overflow-x: auto; 
-	background-color: #fff;
+	background-color: #1b1b1b;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	/* padding: 10px; */
 	border-radius: 5px;
@@ -100,9 +103,8 @@ h1,h2, h3, h4 {
 .noVertical {
 	width:  100%;
 	height: 300px;
-	/* border: 1px solid #ccc; */
-	overflow-x: auto; 
-	background-color: #fff;
+	/* border: 1px solid #ccc; */ 
+	background-color: #1b1b1b;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	/* padding: 10px; */
 	border-radius: 5px;
