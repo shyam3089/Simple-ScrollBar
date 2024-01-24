@@ -13,7 +13,9 @@
 </head>
 <body>
 <div class="wrapper">
-	<h2 class="title">Simple Scrollbar Demo</h2>
+	<h1 class="title">Simple Scrollbar Demo</h1>
+	<a href="https://github.com/shyam3089/myJQueryPlugins/tree/main/simpleScrollBar" title="Githum repositiory">Git Hub</h1>
+	<a href="https://github.com/shyam3089/myJQueryPlugins/tree/main/simpleScrollBar#documentaionHeader">Documentaion</h1>
 	<div class="section vertical">
 		<!-- Vertical Overflowing Div -->
 		<div class="content">
@@ -91,10 +93,10 @@ $(window).on("load",function () {
 	$(".container").sScrollBar( {
 		scrollWidth: 6,
 		borderRadius: 3,
-		trackBgColor: "#c0c9ce",
+		trackBgColor: "#dbdddd",
 		handleBgColor: "#9aa1a5",
-		trackOpacity: 0.5,
-		handleOpacity: 0.7,
+		railDefaultOpacity: 0.5,
+		handleDefaultOpacity: 0.8,
 		showArrows: false,
 		clickScrollSpeed: 200,
 	});
@@ -103,24 +105,23 @@ $(window).on("load",function () {
 	$(".withArrow").sScrollBar( {
 		scrollWidth: 10,
 		borderRadius: 5,
-		trackBgColor: "#649dbc",
-		handleBgColor: "#27a9f7",
-		trackOpacity: 0.5,
-		handleOpacity: 0.7,
+		trackBgColor: "#c7deea",
+		handleBgColor: "#4aabe2",
+		railDefaultOpacity: 0.5,
+		handleDefaultOpacity: 0.8,
 		showArrows: true,
-		clickScrollSpeed: 200,
-		scrollBarOpacity: 0.5
+		clickScrollSpeed: 200
 	});
 
 	// Horizontal scrollbar
 	$(".noVertical").sScrollBar( {
-		scrollWidth: 6,
-		borderRadius: 3,
-		trackBgColor: "#947eb5",
-		handleBgColor: "#ab77f9",
-		trackOpacity: 0.5,
-		handleOpacity: 0.7,
-		showArrows: false,
+		scrollWidth: 7,
+		borderRadius: 5,
+		trackBgColor: "#d8c9ef",
+		handleBgColor: "#a37cdd",
+		railDefaultOpacity: 0.4,
+		handleDefaultOpacity: 0.7,
+		showArrows: true,
 		clickScrollSpeed: 200,
 	});
 
@@ -128,10 +129,10 @@ $(window).on("load",function () {
 	$(".horizontal-container").sScrollBar( {
 		scrollWidth: 10,
 		borderRadius: 5,
-		trackBgColor: "#947eb5",
-		handleBgColor: "#ab77f9",
-		trackOpacity: 0.5,
-		handleOpacity: 0.7,
+		trackBgColor: "#c9eded",
+		handleBgColor: "#3dbab5",
+		railDefaultOpacity: 0.9,
+		handleDefaultOpacity: 0.7,
 		showArrows: true,
 		clickScrollSpeed: 200,
 	});

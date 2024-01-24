@@ -1,4 +1,4 @@
-<h1>Simple Scrollbar</h1>
+<h1 id="documentaionHeader">Simple Scrollbar</h1>
 
 <h3>Overview</h3>
 

@@ -1,5 +1,5 @@
 @font-face {
-	font-family: 'OpenSans-thin';
+	font-family: 'OpenSans-Light';
 	src: url('fonts/OpenSans-Light.ttf') format('truetype'); 
 	font-style: normal;
 }
@@ -14,7 +14,7 @@
 	font-style: normal;
 }
 @font-face {
-	font-family: 'OpenSans-light';
+	font-family: 'OpenSans-semiBold';
 	src: url('fonts/OpenSans-semiBold.ttf') format('truetype'); 
 	font-style: normal;
 }
@@ -31,14 +31,26 @@ html {
 body {
 	margin: 0;
 	padding: 0;
-	background-color: #1b1b1b;
-	color: #505880;
+	background-color: #fafafa;
+	color: #292929;
 	font-size: 14px;
 	line-height: 20px;
 	font-family: 'OpenSans-regular';
 }
 h1,h2, h3, h4 {
 	font-family: 'OpenSans-medium';
+}
+h1 {
+	font-size: 28px;
+}
+h2 {
+	font-size: 25px;
+}
+h3 {
+	font-size: 23px;
+}
+h4 {
+	font-size: 20px;
 }
 * {
 	box-sizing: border-box; 
@@ -52,7 +64,7 @@ h1,h2, h3, h4 {
 	align-items: center;
 	padding: 0 0 50px;
 	margin: 0 2%;
-	background-color: #1b1b1b;
+	background-color: #fafafa;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .title {
@@ -75,49 +87,40 @@ h1,h2, h3, h4 {
 	flex-direction: row;
 	justify-content: space-between;
 }
-.container, .withArrow {
-	width: 100%;
-	height: 300px;
-	border: 1px solid #ccc;
-	background-color: #1b1b1b;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	/* padding: 15px; */
-	border-radius: 5px;
-}
-.cnt p:first-child {
-	padding-top: 0;
-	margin-top: 0;
-}
-.horizontal-container {
-	width:  100%;
-	height: 300px;
-	border: 1px solid #ccc;
-	background-color: #1b1b1b;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	/* padding: 10px; */
-	border-radius: 5px;
-}
-.horizontal-container p{
-	width: 150%;
-}
-.noVertical {
-	width:  100%;
-	height: 300px;
-	/* border: 1px solid #ccc; */ 
-	background-color: #1b1b1b;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	/* padding: 10px; */
-	border-radius: 5px;
-}
-.noVertical p{
-	width: 150%;
-}
 .content {
 	width: 48%;
 	height: auto;
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 30px;
+}
+.cnt {
+	width: 100%;
+	height: 300px;
+	background-color: #fcfcfc;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	padding: 15px;
+	border-radius: 5px;	
+	border: 1px solid #cccccc;
+}
+.cnt p:first-child {
+	padding-top: 0;
+	margin-top: 0;
+}
+.withArrow {
+	height: 300px;
+}
+.horizontal-container {
+	height: 300px;
+}
+.horizontal-container p{
+	width: 150%;
+}
+.noVertical {
+	height: 300px;
+}
+.noVertical p{
+	width: 150%;
 }
 p {
 	margin: 0;
