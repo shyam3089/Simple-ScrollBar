@@ -43,7 +43,7 @@ To initialize Simple Scrollbar on a container element, call the sScrollBar metho
 Customize the scrollbar appearance and behavior by passing options during initialization:
  
 ```javascript
-    $('.your-container-class').sScrollBar({
+	$('.your-container-class').sScrollBar({
 	scrollWidth: 5,            // Scrollbar width
 	borderRadius: 3,           // Scrollbar elements border-radius
 	railBgColor: "#E1E5E6",    // Scrollbar rail color
@@ -59,7 +59,7 @@ Customize the scrollbar appearance and behavior by passing options during initia
 	arrowScrollRate: 50,       // Arrow click scroll distance
 	hOffset: -3,               // Scrollbar spacing from the cotainer
 	vOffset: -3,               //Scrollbar spacing from the cotainer
-    });
+	});
 ```
 
 
