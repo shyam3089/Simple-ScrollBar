@@ -32,10 +32,10 @@ Include the jQuery library, the Simple Scrollbar plugin and css in your HTML fil
 To initialize Simple Scrollbar on a container element, call the sScrollBar method and pass in an options object:
 
 ```javascript
-    $(document).ready(function () {
-        // Scroll bar will be appearing on all the elements with the given class
-        $('.your-container-class').sScrollBar(); 
-    });
+$(document).ready(function () {
+	// Scroll bar will be appearing on all the elements with the given class
+	$('.your-container-class').sScrollBar(); 
+});
 ```
 
 <h3>Configuration</h3>
