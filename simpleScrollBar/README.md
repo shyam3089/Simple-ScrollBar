@@ -2,7 +2,7 @@
 
 <h3>Overview</h3>
 
-<p>The Simple Scrollbar jQuery Plugin is a lightweight and customizable solution for adding vertical and horizontal scrollbars to overflowing containers. It provides a clean and easy-to-use interface for enhancing the scrolling experience of your web applications.
+<p>The Simple Scrollbar jQuery Plugin is a lightweight and customizable solution for adding vertical and horizontal scrollbars to overflowing elements. It provides a clean and easy-to-use interface for enhancing the scrolling experience of your web applications.
 
 <a href="https://htmlpreview.github.io/?https://github.com/shyam3089/myJQueryPlugins/blob/main/simpleScrollBar/demo/demo.html">Demo</a>
 
@@ -10,11 +10,12 @@
 
     1. Vertical and Horizontal Scrollbars
     2. Customizable appearance
-    3. Smooth scrolling animation
-    4. Arrow buttons for navigation
-    5. Supports click-scrolling and drag-scrolling
-    6. Hover effects for a polished user interface
-    7. Automatically adjusts to container size changes
+	3. Responsive - Automatically adjusts to container size changes
+    4. Smooth scrolling animation
+    5. Arrow buttons for navigation
+    6. Supports click-scrolling, drag-scrolling and touch scrolling
+    7. Hover effects for a polished user interface
+    8. Supports touch events
 
 <h3>Installation</h3>
 
@@ -43,19 +44,21 @@ Customize the scrollbar appearance and behavior by passing options during initia
 
 ```javascript
     $('.your-container-class').sScrollBar({
-        scrollWidth: 5,
-        borderRadius: 3,
-        railBgColor: "#E1E5E6",
-        handleBgColor: "#AAA",
-        scrollBarOpacity: 0.6,
-        railOpacity: 0.6,
-        handleOpacity: 0.8,
-        showArrows: true,
-        clickScrollRate: 200,
-        clickScrollSpeed: 200,
-        arrowScrollRate: 50,
-        hOffset: 15,
-        vOffset: 15
+        scrollWidth: 5, // Scrollbar width
+		borderRadius: 3, // Scrollbar elements border-radius
+		railBgColor: "#E1E5E6", // Scrollbar rail color
+		handleBgColor: "#AAA", // Scrollbar handle color
+		scrollBarOpacity: 1, // Total scrollbar opacity
+		railDefaultOpacity: 0.6, // Scrollbar rail defafult opacity
+		handleDefaultOpacity: 0.6, // Scrollbar hand defafult opacity
+		railHoverOpacity: 1, // Scrollbar rail opacity on hover	
+		handleHoverOpacity: 1, // Scrollbar handle opacity on hover	
+		showArrows: true, // Control scrollbar navigation arrows
+		clickScrollRate: 200, // On click scroll distance
+		clickScrollSpeed: 200, // On click scroll animation speed in millisecond
+		arrowScrollRate: 50, // Arrow click scroll distance
+		hOffset: -3, // Scrollbar spacing from the cotainer
+		vOffset: -3, //Scrollbar spacing from the cotainer
     });
 ```
 
@@ -103,15 +106,27 @@ Customize the scrollbar appearance and behavior by passing options during initia
             <td>0.6</td>
         </tr>
         <tr>
-            <td>railOpacity</td>
+            <td>railDefaultOpacity: </td>
             <td>Number (0 to 1)</td>
             <td>Opacity of the scrollbar rail.</td>
             <td>0.6</td>
         </tr>
         <tr>
-            <td>handleOpacity</td>
+            <td>handleDefaultOpacity: </td>
             <td>Number (0 to 1)</td>
             <td>Opacity of the scrollbar handle.</td>
+            <td>0.8</td>
+        </tr>
+		 <tr>
+            <td>railHoverOpacity: : </td>
+            <td>Number (0 to 1)</td>
+            <td>Opacity of the scrollbar rail on hover.</td>
+            <td>0.6</td>
+        </tr>
+        <tr>
+            <td>handleHoverOpacity: : </td>
+            <td>Number (0 to 1)</td>
+            <td>Opacity of the scrollbar handle on hover.</td>
             <td>0.8</td>
         </tr>
         <tr>
@@ -141,13 +156,13 @@ Customize the scrollbar appearance and behavior by passing options during initia
         <tr>
             <td>hOffset</td>
             <td>Number</td>
-            <td>Horizontal scrollbar offset from container: `pixels`.</td>
+            <td>Horizontal scrollbar offset from container in `pixels`.</td>
             <td>-2</td>
         </tr>
         <tr>
             <td>vOffset</td>
             <td>Number</td>
-            <td>Vertical scrollbar offset from container: `pixels`.</td>
+            <td>Vertical scrollbar offset from container in `pixels`.</td>
             <td>-2</td>
         </tr>
     </tbody>

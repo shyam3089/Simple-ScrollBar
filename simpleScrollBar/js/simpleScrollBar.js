@@ -3,7 +3,7 @@ $.fn.sScrollBar = function (options) {
     var settings = $.extend({
 		scrollWidth: 5,
 		borderRadius: 3,
-		trackBgColor: "#E1E5E6",
+		railBgColor: "#E1E5E6",
 		handleBgColor: "#AAA",
 		scrollBarOpacity: 1,
 		railDefaultOpacity: 0.6,
@@ -135,7 +135,7 @@ $.fn.sScrollBar = function (options) {
 						// Set the width of the scroll bar
 						$vTrackElm.width(settings.scrollWidth);
 
-						var rgbValues = hexToRgb(settings.trackBgColor);
+						var rgbValues = hexToRgb(settings.railBgColor);
 
 						$vTrackElm.css({
 							"background-color": "rgba("+rgbValues.red+", "+rgbValues.green+", "+rgbValues.blue+", "+settings.railDefaultOpacity+")",
@@ -144,7 +144,7 @@ $.fn.sScrollBar = function (options) {
 
 						$vRailElm.css({
 							"opacity": settings.railDefaultOpacity,
-							"background-color": settings.trackBgColor
+							"background-color": settings.railBgColor
 						});
 
 						$vScrollbarHandle.css({
@@ -156,7 +156,7 @@ $.fn.sScrollBar = function (options) {
 
 						// Set background color for arrows						
 						$svg = container.find(".arrow");
-						$svg.find('path').attr('fill', settings.trackBgColor);
+						$svg.find('path').attr('fill', settings.railBgColor);
 
 						$vTrackElm.find(".arrow").css({
 							"opacity": settings.railDefaultOpacity,
@@ -436,7 +436,7 @@ $.fn.sScrollBar = function (options) {
 
 						$hTrackElm.height();
 
-						var rgbValues = hexToRgb(settings.trackBgColor);
+						var rgbValues = hexToRgb(settings.railBgColor);
 						$hTrackElm.css({
 							"height": settings.scrollWidth,
 							"background-color": "rgba("+rgbValues.red+", "+rgbValues.green+", "+rgbValues.blue+", "+settings.railDefaultOpacity+")",
@@ -445,7 +445,7 @@ $.fn.sScrollBar = function (options) {
 						
 						$hRailElm.css({
 							"opacity": settings.railDefaultOpacity,
-							"background-color": settings.trackBgColor,
+							"background-color": settings.railBgColor,
 							"border-radius":settings.borderRadius 
 						});	
 
@@ -506,10 +506,10 @@ $.fn.sScrollBar = function (options) {
 						//-----------------------------------------------------
 						// Set background color for arrows						
 						$svg = container.find(".arrow");
-						$svg.find('path').attr('fill', settings.trackBgColor);
+						$svg.find('path').attr('fill', settings.railBgColor);
 
 						$hTrackElm.find(".arrow").css({
-							// "background-color": settings.trackBgColor,
+							// "background-color": settings.railBgColor,
 							"opacity": settings.railDefaultOpacity,
 							"width": settings.scrollWidth,
 						});
