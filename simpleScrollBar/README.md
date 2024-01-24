@@ -89,13 +89,13 @@ $('.your-container-class').sScrollBar({
         </tr>
         <tr>
             <td>railBgColor</td>
-            <td>String (Color:hex)</td>
+            <td>String - hexcode</td>
             <td>Background color of the scrollbar rail.</td>
             <td>#E1E5E6</td>
         </tr>
         <tr>
             <td>handleBgColor</td>            
-            <td>String (Color:hex)</td>
+            <td>String - hexcode</td>
             <td>Background color of the scrollbar handle.</td>
             <td>#AAAAAA</td>
         </tr>
