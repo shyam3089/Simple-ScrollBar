@@ -51,7 +51,7 @@ $('.your-container-class').sScrollBar({
 	scrollBarOpacity: 1,       // Total scrollbar opacity
 	railDefaultOpacity: 0.6,   // Scrollbar rail defafult opacity
 	handleDefaultOpacity: 0.6, // Scrollbar hand defafult opacity
-	railHoverOpacity: 1,       // Scrollbar rail opacity on hover	
+	railHoverOpacity: 1,       // Scrollbar rail opacity on hover	 
 	handleHoverOpacity: 1,     // Scrollbar handle opacity on hover	
 	showArrows: true,          // Control scrollbar navigation arrows
 	clickScrollRate: 200,      // On click scroll distance
