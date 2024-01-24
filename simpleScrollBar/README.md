@@ -22,9 +22,9 @@
 Include the jQuery library, the Simple Scrollbar plugin and css in your HTML file.<br>
 
 ```html
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="simple-scrollbar.js"></script>
-    <link rel="stylesheet" href="sScrollbar.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="simple-scrollbar.js"></script>
+<link rel="stylesheet" href="sScrollbar.css">
 ```
 
 <h3>Usage</h3>
