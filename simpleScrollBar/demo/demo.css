@@ -50,10 +50,22 @@ h3 {
 	font-size: 23px;
 }
 h4 {
-	font-size: 20px;
+	font-size: 18px;
 }
 * {
 	box-sizing: border-box; 
+}
+header {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 100%;
+	align-self: start;
+	margin: 0;
+	padding: 30px 15px;
+	border-bottom: 1px solid #b4acda;
+	background: rgb(128,210,246);
+	background: linear-gradient(90deg, rgb(128, 210, 246) 47%, rgb(240, 170, 255) 100%);
 }
 .wrapper {
 	width: 96%;
@@ -69,13 +81,30 @@ h4 {
 }
 .title {
 	width: 100%;
-	align-self: start;
+	line-height: normal;
+	margin: 0;	
+}
+nav {
+	display: flex;
+	flex-direction: column;
 	margin: 0;
-	padding: 30px 15px;
-	border-bottom: 1px solid #b4acda;
-	background: rgb(128,210,246);
-	background: linear-gradient(90deg, rgba(128,210,246,1) 47%, rgba(224,109,241,1) 100%);
-	
+	padding: 0;
+}
+nav ul {	
+	margin: 0;
+	padding: 0;
+}
+nav ul li {
+	list-style: none;
+}
+nav ul li a {
+	text-decoration: none;
+	color: #292929;
+	font-size: 16px;
+}
+nav ul li a:hover {
+	text-decoration: none;
+	color: #006a8a;
 }
 .section {
 	width: 100%;
@@ -131,8 +160,23 @@ p {
 }
 
 @media only screen and (max-width: 640px) {
+	.wrapper {
+		width: 100%;
+		margin: 0;
+	}
 	.wrapper, .section  {
 		flex-direction: column !important;
+	}
+	header {
+		flex-direction: column;
+		align-items: start;
+	}
+	h1.title {
+		font-size: 22px;
+		margin-bottom: 15px;
+	}
+	h4 {
+		font-size: 16px;
 	}
 	.content {
 		width: 100%;

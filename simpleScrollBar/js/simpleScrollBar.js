@@ -296,11 +296,7 @@ $.fn.sScrollBar = function (options) {
 						var initialY;
 						var initialScrollTop;
 
-						$vScrollbarHandle.mousedown(function (e) {  })
-						container.on("touchstart touchmove", function(e) {
-							e.preventDefault();
-						});
-
+						$vScrollbarHandle.mousedown(function (e) { });
 						
 						function getEventY(e) {
 							if (e.touches && e.touches.length > 0) {
@@ -596,10 +592,7 @@ $.fn.sScrollBar = function (options) {
 						var initialX;
 						var initialScrollLeft;
 						
-						$hScrollbarHandle.mousedown(function (e) {  })
-						container.on("touchstart touchmove", function(e) {
-							e.preventDefault();
-						});
+						$hScrollbarHandle.mousedown(function (e) { });
 						
 						function getEventX(e) {
 							if (e.touches && e.touches.length > 0) {
