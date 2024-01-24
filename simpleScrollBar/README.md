@@ -44,7 +44,7 @@ Customize the scrollbar appearance and behavior by passing options during initia
  
 ```javascript
     $('.your-container-class').sScrollBar({
-		scrollWidth: 5,            // Scrollbar width
+		scrollWidth: 5,            // Scrollbar width 
 		borderRadius: 3,           // Scrollbar elements border-radius
 		railBgColor: "#E1E5E6",    // Scrollbar rail color
 		handleBgColor: "#AAA",     // Scrollbar handle color
