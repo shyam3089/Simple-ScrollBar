@@ -41,7 +41,7 @@ To initialize Simple Scrollbar on a container element, call the sScrollBar metho
 <h3>Configuration</h3>
 
 Customize the scrollbar appearance and behavior by passing options during initialization:
-
+ 
 ```javascript
     $('.your-container-class').sScrollBar({
 		scrollWidth: 5,            // Scrollbar width
